@@ -1,0 +1,8 @@
+.square {
+  padding: 3rem 3rem;
+  border: 1px solid #15c5f1;
+  cursor: pointer;
+}
+.square:hover {
+  background: #a84bdf;
+}

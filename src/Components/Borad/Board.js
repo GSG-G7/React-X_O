@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from '../Square/Square';
+import('./style.css');
 export default class Board extends React.Component {
   state = {
     squars: Array(9).fill(null)
