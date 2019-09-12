@@ -6,3 +6,10 @@
   text-align: center;
   margin-bottom: 3rem;
 }
+.replay {
+  background: #15c5f1;
+  border: 1px solid #333;
+  padding: 1rem 2rem;
+  display: block;
+  margin: 30px auto;
+}
