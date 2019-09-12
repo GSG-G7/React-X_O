@@ -5,17 +5,24 @@ import('./style.css');
 export default class Board extends React.Component {
   state = {
     squares: Array(9).fill(null),
-    xIsNext: true
+    xIsNext: true,
+    winnerPlayer: null
   };
 
   onclickHandler = index => {
-    if (this.state.squares[index] !== null) return;
+    if (this.state.squares[index] !== null) return; // scenario 1
     const squares = [...this.state.squares];
-    squares[index] = this.state.xIsNext ? 'X' : 'O';
-    this.setState((state, _props) => ({
-      squares: squares,
-      xIsNext: !state.xIsNext
-    }));
+    if (!calcWinner(squares)) {
+      squares[index] = this.state.xIsNext ? 'X' : 'O';
+      this.setState((state, _props) => ({
+        squares: squares,
+        xIsNext: !state.xIsNext
+      }));
+    }
+
+    this.setState({
+      winnerPlayer: calcWinner(squares)
+    });
   };
 
   renderSquare(i) {
@@ -28,7 +35,12 @@ export default class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    let status = this.state.winnerPlayer
+      ? `Player ${this.state.winnerPlayer} is the winner`
+      : 'Continue Playing';
+      if(this.state.winnerPlayer === null && !this.state.squares.includes(null) ){
+        status = "No Winner";
+      }
 
     return (
       <div>
