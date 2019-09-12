@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Game from './container/ Game/ Game';
+import Board from './container/Borad/Board';
 function App() {
   return (
     <React.Fragment>
-      <Game />
+      <Board />
     </React.Fragment>
   );
 }
