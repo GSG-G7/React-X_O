@@ -1,5 +1,6 @@
 import React from 'react';
 import Square from '../../Components/Square/Square';
+import calcWinner from '../../utils/calcWinner';
 import('./style.css');
 export default class Board extends React.Component {
   state = {
@@ -8,7 +9,6 @@ export default class Board extends React.Component {
   };
 
   onclickHandler = index => {
-    console.log(index);
     if (this.state.squares[index] !== null) return;
     const squares = [...this.state.squares];
     squares[index] = this.state.xIsNext ? 'X' : 'O';
