@@ -26,4 +26,4 @@ _npm start_
 
 ### run remotely
 
-[go play x-o](https://laughing-noether-d0979e.netlify.com)
+- the site is deployed to netlify [go play x-o](https://laughing-noether-d0979e.netlify.com)
