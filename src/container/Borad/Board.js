@@ -35,7 +35,8 @@ export default class Board extends React.Component {
 
   rePlay = () => {
     this.setState({
-      squares: Array(9).fill(null)
+      squares: Array(9).fill(null),
+      winnerPlayer: null
     });
   };
 
