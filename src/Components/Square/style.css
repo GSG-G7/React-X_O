@@ -3,8 +3,9 @@
   border: 1px solid #15c5f1;
   cursor: pointer;
   outline: none;
+  box-sizing: border-box;
 }
 .square:hover {
-  background: #a84bdf;
+  background: #31e750;
   outline: none;
 }
