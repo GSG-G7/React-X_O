@@ -19,28 +19,36 @@ export default class Board extends React.Component {
         xIsNext: !state.xIsNext
       }));
     }
-
     this.setState({
       winnerPlayer: calcWinner(squares)
     });
   };
 
-  renderSquare(i) {
+  renderSquare = i => {
     return (
       <Square
         onclickHandler={this.onclickHandler.bind(null, i)}
         value={this.state.squares[i]}
       />
     );
-  }
+  };
+
+  rePlay = () => {
+    this.setState({
+      squares: Array(9).fill(null)
+    });
+  };
 
   render() {
     let status = this.state.winnerPlayer
       ? `Player ${this.state.winnerPlayer} is the winner`
       : 'Continue Playing';
-      if(this.state.winnerPlayer === null && !this.state.squares.includes(null) ){
-        status = "No Winner";
-      }
+    if (
+      this.state.winnerPlayer === null &&
+      !this.state.squares.includes(null)
+    ) {
+      status = 'No Winner';
+    }
 
     return (
       <div>
@@ -60,6 +68,7 @@ export default class Board extends React.Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
+        <button onClick={this.rePlay}>Replay</button>
       </div>
     );
   }
