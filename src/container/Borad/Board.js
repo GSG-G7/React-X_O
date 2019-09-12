@@ -1,25 +1,28 @@
 import React from 'react';
-import Square from '../Square/Square';
+import Square from '../../Components/Square/Square';
 import('./style.css');
 export default class Board extends React.Component {
   state = {
-    squars: Array(9).fill(null)
+    squares: Array(9).fill(null),
+    xIsNext: true
   };
 
   onclickHandler = index => {
-    const squars = [...this.state.squars];
-
-    alert(index);
-    // this.setState({ value: 'X' });
+    console.log(index);
+    if (this.state.squares[index] !== null) return;
+    const squares = [...this.state.squares];
+    squares[index] = this.state.xIsNext ? 'X' : 'O';
+    this.setState((state, props) => ({
+      squares: squares,
+      xIsNext: !this.state.xIsNext
+    }));
   };
 
   renderSquare(i) {
-    // console.log(i);
     return (
       <Square
-        onclickHandler={this.onclickHandler}
-        value={this.state.squars[i]}
-        index={i}
+        onclickHandler={this.onclickHandler.bind(null, i)}
+        value={this.state.squares[i]}
       />
     );
   }
