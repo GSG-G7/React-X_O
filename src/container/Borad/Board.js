@@ -12,9 +12,9 @@ export default class Board extends React.Component {
     if (this.state.squares[index] !== null) return;
     const squares = [...this.state.squares];
     squares[index] = this.state.xIsNext ? 'X' : 'O';
-    this.setState((state, props) => ({
+    this.setState((state, _props) => ({
       squares: squares,
-      xIsNext: !this.state.xIsNext
+      xIsNext: !state.xIsNext
     }));
   };
 
