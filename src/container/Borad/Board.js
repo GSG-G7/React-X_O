@@ -10,27 +10,36 @@ export default class Board extends React.Component {
   };
 
   onclickHandler = index => {
-    if (this.state.squares[index] !== null) return; // scenario 1
+    if (this.state.squares[index] !== null || this.state.winnerPlayer !== null)
+      return;
+
     const squares = [...this.state.squares];
+
     if (!calcWinner(squares)) {
-      squares[index] = this.state.xIsNext ? 'X' : 'O';
-      this.setState((state, _props) => ({
+      squares[index] = this.state.xIsNext ? 'X' : 'O'; // true or false
+      this.setState(state => ({
         squares: squares,
         xIsNext: !state.xIsNext
       }));
+    } else {
+      this.setState({
+        winnerPlayer: calcWinner(squares)
+      });
     }
-    this.setState({
-      winnerPlayer: calcWinner(squares)
-    });
   };
 
-  renderSquare = i => {
-    return (
-      <Square
-        onclickHandler={this.onclickHandler.bind(null, i)}
-        value={this.state.squares[i]}
-      />
-    );
+  renderSquare = arr => {
+    return arr.map((item, index) => {
+      return (
+        <Square
+          key={index}
+          onclickHandler={() => {
+            this.onclickHandler(item);
+          }}
+          value={this.state.squares[item]}
+        />
+      );
+    });
   };
 
   rePlay = () => {
@@ -54,21 +63,9 @@ export default class Board extends React.Component {
     return (
       <div>
         <div className='status'>{status}</div>
-        <div className='board-row'>
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className='board-row'>
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className='board-row'>
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        <div className='board-row'>{this.renderSquare([0, 1, 2])}</div>
+        <div className='board-row'>{this.renderSquare([3, 4, 5])} </div>
+        <div className='board-row'>{this.renderSquare([6, 7, 8])}</div>
         <button className='replay' onClick={this.rePlay}>
           Replay
         </button>
