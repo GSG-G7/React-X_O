@@ -21,7 +21,9 @@ export default class Board extends React.Component {
         squares: squares,
         xIsNext: !state.xIsNext
       }));
-    } else {
+    }
+
+    if (calcWinner(squares)) {
       this.setState({
         winnerPlayer: calcWinner(squares)
       });
